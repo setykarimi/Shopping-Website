@@ -1,0 +1,26 @@
+
+
+@font-face {
+  font-family: 'Dosis';
+  src: url('./assets/fonts/Dosis-Regular.ttf');
+}
+
+
+
+$Dosis : 'Dosis';
+
+.App {
+  text-align: center;
+}
+
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-family: $Dosis ;
+}
+
+body{
+  background: #f6f6f6;
+}
