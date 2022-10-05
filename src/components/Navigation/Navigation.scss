@@ -1,0 +1,36 @@
+.main-nav{
+    width: 100%;
+    height: 4em;
+    background-color: #ffedd5;
+    nav{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        padding: 0 2em;
+        ul{
+            display: flex;
+            gap: 1em;
+            align-items: center;
+            justify-content: center;
+            li{
+                a{
+                   text-decoration: none;
+                   transition: .3s ease;
+                   &:hover{
+                    color: #f97316;
+                   }
+
+                   &:active{
+                    color: #f97316;
+                   }
+
+                   &.active-link{
+                    color: #f97316;
+                    font-weight: bold;
+                   }
+                }
+            }
+        }
+    }
+}
