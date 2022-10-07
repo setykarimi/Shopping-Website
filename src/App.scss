@@ -24,3 +24,10 @@ $Dosis : 'Dosis';
 body{
   background: #f6f6f6;
 }
+
+
+.products-list{
+  padding: 1em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
