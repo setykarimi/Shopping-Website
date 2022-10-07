@@ -22,8 +22,11 @@
                 a{
                    text-decoration: none;
                    transition: .3s ease;
+                   color: #444;
+                   font-weight: normal;
                    &:hover{
                     color: #f97316;
+                    font-weight: bold;
                    }
 
                    &:active{
@@ -40,6 +43,7 @@
 
         h2{
             font-family: 'Dosis-Bold';
+            color: #ea580c;
         }
     }
 }
