@@ -4,10 +4,10 @@ export const cartReducer = (state,action) => {
             const updatedCart = [...state.cart]
             const updatedItemIndex = updatedCart.findIndex((item) => item.id === action.payload.id)
             if(updatedItemIndex < 0){
-                updatedCart.push({...action.payload, qauantity: 1})
+                updatedCart.push({...action.payload, quantity: 1})
             }else{
                 const updatedItem = {...updatedCart[updatedItemIndex]}
-                updatedItem.qauantity++;
+                updatedItem.quantity++;
                 updatedCart[updatedItemIndex] = updatedItem;
             }
 
