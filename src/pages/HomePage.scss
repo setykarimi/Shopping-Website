@@ -1,0 +1,81 @@
+@font-face {
+    font-family: "Dosis-Bold";
+    src: url("../assets/fonts/Dosis-ExtraBold.ttf");
+}
+
+.products-list {
+    display: grid;
+    grid-template-columns: repeat( 4, minmax(250px, 1fr) );
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 4em;
+    @media(max-width:1200px){
+        grid-template-columns: repeat( 3, minmax(200px, 1fr) );
+        gap: 2em;
+        padding: 0 3em;
+    }
+    @media(max-width:767px){
+        grid-template-columns: repeat( 2, minmax(200px, 1fr) );
+        gap: 2em;
+        padding: 0 3em;
+    }
+
+    @media(max-width:576px){
+        grid-template-columns: repeat( 1, minmax(200px, 1fr) );
+        gap: 2em;
+        padding: 0 1em;
+    }
+    &__item {
+        background: #fff;
+        padding: 1em;
+        border-radius: 0.5em;
+        border: 1px solid rgb(235, 235, 235);
+        img {
+            width: 100%;
+        }
+        &-name {
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            padding-bottom: .3em;
+            span {
+                font-family: 'Dosis-Bold';
+            }
+        }
+
+        &-details{
+            margin-top: .5em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            &-price{
+                display: flex;
+                flex-direction: column;
+                text-align: left;
+                gap: .2em;
+                span{
+                    color: #bbb;
+                    font-size: .9em;
+                }
+                b{
+                    color: #666;
+                }
+            }
+
+            button{
+                color: #f97316;
+               padding: .3em .6em;
+               font-weight: bold;
+               border: 1px solid #f97316;
+               background: transparent;
+               border-radius: .3em;
+               transition: .3s ease-in;
+               cursor: pointer;
+               &:hover{
+                background: #f97316;
+                color: #fff;
+               }
+            }
+        }
+    }
+}
