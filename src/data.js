@@ -1,7 +1,7 @@
 export const products = [
     {
         id: 1,
-        name: "WInter body",
+        name: "Winter body",
         description : [
             {support: "گارانتی مادام العمر"},
             {support: "ارسال رایگان"},
@@ -28,7 +28,19 @@ export const products = [
         id: 3,
         name: "Nike",
         description : [
-            {support: "گرانتی مادام العمر"},
+            {support: "گارانتی مادام العمر"},
+            {support:  "اورجینال"},
+        ],
+        price: 400,
+        offPrice: 390,
+        discount: 0,
+        image: 'https://s4.uupload.ir/files/item1_soj.jpg'
+    },
+    {
+        id: 4,
+        name: "Body Spinner",
+        description : [
+            {support: "گارانتی مادام العمر"},
             {support:  "اورجینال"},
         ],
         price: 400,
