@@ -1,8 +1,8 @@
 import { useCart, useCartActions } from "../Providers/CartProvider";
 
 const CartPage = () => {
-    const { cart,total } = useCart()
-    const  dispatch  = useCartActions()
+    const { cart, total } = useCart()
+    const dispatch = useCartActions()
 
     if (!cart) {
         return (
@@ -11,11 +11,11 @@ const CartPage = () => {
     }
 
     const IncrementHandler = (cartItem) => {
-        dispatch({type: "ADD_TO_CART", payload:cartItem})
+        dispatch({ type: "ADD_TO_CART", payload: cartItem })
     }
 
     const DecrementHandler = (cartItem) => {
-        dispatch({type: "REMOVE_PRODUCT", payload:cartItem})
+        dispatch({ type: "REMOVE_PRODUCT", payload: cartItem })
     }
 
     return (
@@ -23,25 +23,47 @@ const CartPage = () => {
             <section>
                 {cart.map(item =>
                     <div key={item.id} className="cartItem">
-                        <img src={item.image} alt={item.name}/>
+                        <img src={item.image} alt={item.name} />
                         <h3>Name: {item.name}</h3>
-                        <h4>Price: {item.price * item.quantity}</h4>
+                        <h4>Price: {item.offPrice * item.quantity}</h4>
                         <div>
                             <button onClick={() => DecrementHandler(item)}>remove</button>
                             <button>{item.quantity}</button>
                             <button onClick={() => IncrementHandler(item)}>Add</button>
                         </div>
                     </div>
-                  
-                    )
+
+                )
                 }
             </section>
-            <section className="cart-summary">
-                <h3>cart summary</h3>
-                <h5>{total}</h5>
-            </section>
+            <CartSummary total={total}
+            cart={cart} />
         </main>
     );
 }
 
 export default CartPage;
+
+const CartSummary = ({ total,cart }) => {
+    const originalTotal = cart.length 
+    ? cart.reduce((acc,curr) => acc + curr.quantity * curr.price,0) : 0;  
+    return (
+        <section className="cart-summary">
+            <h3>cart summary</h3>
+            <div>
+                <h5>originalTotal price</h5>
+                <p>${originalTotal}</p>
+            </div>
+
+            <div>
+                <h5>cart discount</h5>
+                <p>${originalTotal - total}</p>
+            </div>
+            <hr></hr>
+            <div>
+                <h5>net price</h5>
+                <p>${total}</p>
+            </div>
+        </section>
+    )
+}
