@@ -8,7 +8,7 @@ export const products = [
             {support:  "اورجینال"},
         ],
         price: 120,
-        offPrice: 120,
+        offPrice: 100,
         discount: 0,
         image: 'https://s4.uupload.ir/files/item1_soj.jpg'
     },
@@ -19,7 +19,7 @@ export const products = [
             {support: "ارسال رایگان"},
             {support:  "اورجینال"},
         ],
-        price: 110,
+        price: 130,
         offPrice: 110,
         discount: 0,
         image: 'https://s4.uupload.ir/files/item1_soj.jpg'
