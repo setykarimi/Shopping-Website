@@ -1,9 +1,17 @@
 import * as data from '../data';
-import { useCartActions } from '../Providers/CartProvider';
-import './HomePage.scss'
+import { useCart, useCartActions } from '../Providers/CartProvider';
+import { checkInCart } from '../utils/checkInCart';
+import { toast } from 'react-toastify';
+import './HomePage.scss';
+
+
+
+
 const HomePage = () => {
-    const dispatch = useCartActions()
+    const dispatch = useCartActions();
+    const {cart} = useCart()
     const AddProductHandler = (product) => {
+        toast.success(`${product.name} added to Cart!`)
         dispatch({ type: 'ADD_TO_CART', payload: product })
     }
     return (
@@ -22,7 +30,9 @@ const HomePage = () => {
                                 <span>price</span>
                                 <b>$ {product.price} </b>
                             </div>
-                            <button onClick={() => AddProductHandler(product)}>Add to cart</button>
+                            <button onClick={() => AddProductHandler(product)}>
+                                {checkInCart(cart,product) ? "In cart" : "Add to cart"}
+                            </button>
                         </div>
 
                     </section>
