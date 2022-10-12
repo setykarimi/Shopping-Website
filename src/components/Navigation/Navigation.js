@@ -1,7 +1,9 @@
 import { NavLink } from "react-router-dom";
+import { useCart } from "../../Providers/CartProvider";
 import './Navigation.scss'
 
 const Navigation = () => {
+    
     return (
         <header className="main-nav">
             <nav>
