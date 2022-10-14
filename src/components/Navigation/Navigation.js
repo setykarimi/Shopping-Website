@@ -3,14 +3,18 @@ import { useCart } from "../../Providers/CartProvider";
 import './Navigation.scss'
 
 const Navigation = () => {
-    
+    const { cart } = useCart()
+
     return (
         <header className="main-nav">
             <nav>
-            
                 <ul>
                     <li><NavLink to='/'>Home</NavLink></li>
-                    <li><NavLink to='/cart'>Cart</NavLink></li>
+                    <li>
+                        <NavLink to='/cart'>Cart
+                          <span>  {cart.length}</span>
+                        </NavLink>
+                    </li>
                 </ul>
                 <h2>Shopping Center</h2>
             </nav>
