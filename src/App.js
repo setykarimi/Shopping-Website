@@ -12,14 +12,14 @@ function App() {
   return (
     <div className="App">
     <ToastContainer />
+    <CartProvider>
       <Layout>
-        <CartProvider>
           <Routes>
             <Route path='/' element=<HomePage /> />
             <Route path='/cart' element=<CartPage /> />
           </Routes>
-        </CartProvider>
       </Layout>
+      </CartProvider>
     </div>
   );
 }
