@@ -1,14 +1,10 @@
+import { Link } from "react-router-dom";
 import { useCart, useCartActions } from "../Providers/CartProvider";
+import './CartPage.scss';
 
 const CartPage = () => {
     const { cart, total } = useCart()
     const dispatch = useCartActions()
-
-    if (!cart) {
-        return (
-            <main><h2>Cart is empty</h2></main>
-        )
-    }
 
     const IncrementHandler = (cartItem) => {
         dispatch({ type: "ADD_TO_CART", payload: cartItem })
@@ -17,19 +13,23 @@ const CartPage = () => {
     const DecrementHandler = (cartItem) => {
         dispatch({ type: "REMOVE_PRODUCT", payload: cartItem })
     }
+    console.log(cart);
+    if (cart.length == 0) {
+        return <main>Cart is empty</main>
+    }
 
     return (
-        <main className="container">
+        <main className="container cart-page">
             <section>
                 {cart.map(item =>
-                    <div key={item.id} className="cartItem">
-                        <img src={item.image} alt={item.name} />
-                        <h3>Name: {item.name}</h3>
-                        <h4>Price: {item.offPrice * item.quantity}</h4>
-                        <div>
-                            <button onClick={() => DecrementHandler(item)}>remove</button>
-                            <button>{item.quantity}</button>
-                            <button onClick={() => IncrementHandler(item)}>Add</button>
+                    <div key={item.id} className="cart-item">
+                        <img src={item.image} alt={item.name} className="cart-item__img" />
+                        <span className="cart-item__name">{item.name}</span>
+                        <span className="cart-item__price">$ {item.offPrice * item.quantity}</span>
+                        <div className="cart-item__buttons">
+                            <button onClick={() => DecrementHandler(item)}>-</button>
+                            <span>{item.quantity}</span>
+                            <button onClick={() => IncrementHandler(item)}>+</button>
                         </div>
                     </div>
 
@@ -37,33 +37,37 @@ const CartPage = () => {
                 }
             </section>
             <CartSummary total={total}
-            cart={cart} />
+                cart={cart} />
         </main>
     );
 }
 
 export default CartPage;
 
-const CartSummary = ({ total,cart }) => {
-    const originalTotal = cart.length 
-    ? cart.reduce((acc,curr) => acc + curr.quantity * curr.price,0) : 0;  
+const CartSummary = ({ total, cart }) => {
+    const originalTotal = cart.length
+        ? cart.reduce((acc, curr) => acc + curr.quantity * curr.price, 0) : 0;
     return (
         <section className="cart-summary">
             <h3>cart summary</h3>
             <div>
-                <h5>originalTotal price</h5>
-                <p>${originalTotal}</p>
+                <h5 className="cart-summary__title">originalTotal price</h5>
+                <span className="cart-summary__price">${originalTotal}</span>
             </div>
 
             <div>
-                <h5>cart discount</h5>
-                <p>${originalTotal - total}</p>
+                <h5 className="cart-summary__title">cart discount</h5>
+                <span className="cart-summary__price">${originalTotal - total}</span>
             </div>
-            <hr></hr>
+           
             <div>
-                <h5>net price</h5>
-                <p>${total}</p>
+                <h5 className="cart-summary__title">net price</h5>
+                <span className="cart-summary__price">$ {total}</span>
             </div>
+
+            <Link to='/checkout' style={{width: '100%',display: 'block', borderTop: '1px solid #eee', marginTop: "1em"}}>
+                <button className="btn-orange" style={{width: '100%', marginTop: '.5em'}}>Go to Checkout</button>
+            </Link>
         </section>
     )
 }
