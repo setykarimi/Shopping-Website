@@ -1,0 +1,96 @@
+@font-face {
+    font-family: "Dosis-Bold";
+    src: url("../assets/fonts/Dosis-ExtraBold.ttf");
+}
+
+.cart-page {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 2em;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
+    section {
+        background: #fff;
+        padding: 1em;
+        border-radius: 0.5em;
+        border: 1px solid rgb(235, 235, 235);
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .cart-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            align-items: center;
+            justify-content: center;
+            padding: 1em;
+            gap: 1em;
+            &__img {
+                width: auto;
+            }
+
+            &__name {
+                font-size: 1.2em;
+                font-family: "Dosis-Bold";
+            }
+
+            &__price {
+                font-size: 1.1em;
+            }
+
+            &__buttons {
+                display: flex;
+                button,
+                span {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background: transparent;
+                    width: 1.7em;
+                    height: 1.7em;
+                    border: 1px solid #fdba74;
+                    font-size: 15px;
+                    &:first-child {
+                        border-top-left-radius: 0.5em;
+                        border-bottom-left-radius: 0.5em;
+                        cursor: pointer;
+                        transition: 0.3s ease-in;
+                        &:hover {
+                            background-color: #fef3c7;
+                        }
+                    }
+
+                    &:last-child {
+                        border-top-right-radius: 0.5em;
+                        border-bottom-right-radius: 0.5em;
+                        cursor: pointer;
+                        transition: 0.3s ease-in;
+                        &:hover {
+                            background-color: #fef3c7;
+                        }
+                    }
+                }
+
+                span {
+                    font-weight: bold;
+                }
+            }
+        }
+
+        .cart-summary {
+            &__title {
+                margin-top: 1em;
+                font-size: 1em;
+                margin-bottom: 0.3em;
+            }
+
+            
+
+            &__price {
+                font-size: 1.1em;
+            }
+        }
+    }
+}
