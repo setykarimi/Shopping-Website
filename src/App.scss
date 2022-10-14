@@ -29,5 +29,25 @@ body{
 .container{
   max-width: 1200px;
   margin: 2em auto;
+  @media(max-width:1200px){
+    padding: 1em;
+  }
 }
 
+
+.btn-orange{
+  background: #fb923c;
+  padding: .5em;
+  border: 1px solid transparent;
+  border-radius: .4em;
+  font-weight: bold;
+  color: #fff7ed;
+  letter-spacing: .1em;
+  cursor: pointer;
+  transition:.3s ease-in;
+  &:hover{
+    background: #fff;
+    border: 1px solid #fb923c;
+    color: #fb923c;
+  }
+}
