@@ -15,6 +15,9 @@ const Navigation = () => {
                           <span className="cart-length">{cart.length}</span>
                         </NavLink>
                     </li>
+                    <li>
+                        <NavLink to="/signup">login/signup</NavLink>
+                    </li>
                 </ul>
                 <h2>Shopping Center</h2>
             </nav>
