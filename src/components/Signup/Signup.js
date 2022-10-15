@@ -1,7 +1,10 @@
 import Input from "../../common/Input";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { signupUser } from "../../services/signupService";
+
 
 const initialValues = {
     name: "",
@@ -9,10 +12,6 @@ const initialValues = {
     phoneNumber: "",
     password: "",
     passwordConfirm: ""
-}
-
-const onSubmit = (values) => {
-    console.log(values);
 }
 
 const validationSchema = Yup.object({
@@ -24,18 +23,40 @@ const validationSchema = Yup.object({
 })
 
 
+const SignupForm = (props) => {
+    const navigate = useNavigate();
 
-const SignupForm = () => {
+    const onSubmit = async (values) => {
+        const {name, email, phoneNumber, password} = values
+        const userData = {
+            name: name,
+            email: email,
+            phoneNumber: phoneNumber,
+            password: password
+        };
+
+        try {
+            const { data } = await signupUser(userData);
+            navigate("/")
+        } catch (error) {
+            if(error.response && error.response.data.message){
+                toast.error(error.response.data.message)
+            }
+        }
+    }
+
     const formik = useFormik({
         initialValues,
         onSubmit,
         validationSchema,
         validateOnMount: true
     })
+
     return (
         <div className="form">
-        <h3>Signup Form</h3>
-            <form onSubmit={onSubmit}>
+            <h3>Signup Form</h3>
+
+            <form onSubmit={formik.handleSubmit}>
                 <Input formik={formik} label="Name" name="name" />
                 <Input formik={formik} label="Email" name="email" type="email" />
                 <Input formik={formik} label="Phone Number" name="phoneNumber" type="tel" />
@@ -43,8 +64,7 @@ const SignupForm = () => {
                 <Input formik={formik} label="Password Confirmation" name="passwordConfirm" type="password" />
                 <button type="submit" disabled={!formik.isValid} className="btn-orange">Signup</button>
             </form>
-
-            <Link to="/login" style={{marginTop: "1em", display: "block"}}>Already have an account? <b className="orange">Login</b></Link>
+            <Link to="/login" style={{ marginTop: "1em", display: "block" }}>Already have an account? <b className="orange">Login</b></Link>
         </div>);
 }
 
