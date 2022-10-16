@@ -4,6 +4,8 @@ import * as Yup from 'yup';
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { signupUser } from "../../services/signupService";
+import { useAuthActions } from "../../Providers/AuthProvider";
+import { useQuery } from "../../hooks/useQuery";
 
 
 const initialValues = {
@@ -25,6 +27,10 @@ const validationSchema = Yup.object({
 
 const SignupForm = (props) => {
     const navigate = useNavigate();
+    const setAuth = useAuthActions();
+    const query = useQuery();
+    const redirect = query.get('redirect') || "/";
+    console.log(redirect);
 
     const onSubmit = async (values) => {
         const {name, email, phoneNumber, password} = values
@@ -37,7 +43,9 @@ const SignupForm = (props) => {
 
         try {
             const { data } = await signupUser(userData);
-            navigate("/")
+            setAuth(data);
+            // localStorage.setItem('authState',JSON.stringify(data))
+            navigate(redirect);
         } catch (error) {
             if(error.response && error.response.data.message){
                 toast.error(error.response.data.message)
@@ -64,7 +72,7 @@ const SignupForm = (props) => {
                 <Input formik={formik} label="Password Confirmation" name="passwordConfirm" type="password" />
                 <button type="submit" disabled={!formik.isValid} className="btn-orange">Signup</button>
             </form>
-            <Link to="/login" style={{ marginTop: "1em", display: "block" }}>Already have an account? <b className="orange">Login</b></Link>
+            <Link to={`/login?redirect=${redirect}`} style={{ marginTop: "1em", display: "block" }}>Already have an account? <b className="orange">Login</b></Link>
         </div>);
 }
 
