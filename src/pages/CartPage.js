@@ -65,7 +65,7 @@ const CartSummary = ({ total, cart }) => {
                 <span className="cart-summary__price">$ {total}</span>
             </div>
 
-            <Link to='/checkout' style={{width: '100%',display: 'block', borderTop: '1px solid #eee', marginTop: "1em"}}>
+            <Link to='/signup?redirect=checkout ' style={{width: '100%',display: 'block', borderTop: '1px solid #eee', marginTop: "1em"}}>
                 <button className="btn-orange" style={{width: '100%', marginTop: '.5em'}}>Go to Checkout</button>
             </Link>
         </section>
