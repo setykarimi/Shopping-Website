@@ -4,8 +4,9 @@ import * as Yup from 'yup';
 import { json, Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { loginService } from "../../services/loginService";
-import { useAuthActions } from "../../Providers/AuthProvider";
+import { useAuth, useAuthActions } from "../../Providers/AuthProvider";
 import { useQuery } from "../../hooks/useQuery";
+import { useEffect } from "react";
 
 const initialValues = {
     email: "",
@@ -23,9 +24,15 @@ const validationSchema = Yup.object({
 const LoginForm = () => {
     const navigate = useNavigate();
     const setAuth = useAuthActions();
+    const auth = useAuth();
+
     const query = useQuery();
-    const redirect = query.get('redirect') || "/";
+    const redirect = query.get('redirect') || "/checkout";
     console.log(redirect);
+
+    useEffect(() => {
+        if(auth) navigate(redirect)
+    },[redirect,auth])
 
     const onSubmit = async (values) => {
         try{
