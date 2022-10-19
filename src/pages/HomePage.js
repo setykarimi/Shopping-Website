@@ -3,35 +3,51 @@ import { useCart, useCartActions } from '../Providers/CartProvider';
 import { checkInCart } from '../utils/checkInCart';
 import { toast } from 'react-toastify';
 import './HomePage.scss';
-
-
+import { useEffect, useState } from 'react';
+import http from '../services/httpService';
 
 
 const HomePage = () => {
+    const [products,setProducts] = useState()
     const dispatch = useCartActions();
     const {cart} = useCart()
     const AddProductHandler = (product) => {
         toast.success(`${product.name} added to Cart!`)
         dispatch({ type: 'ADD_TO_CART', payload: product })
+        console.log(product._id);
+    }
+
+    useEffect(() => {
+        http.get('/product')
+        .then((res) =>{
+            setProducts(res.data);
+            console.log(res.data);
+        })
+        .catch((err) => console.log(err))
+    },[])
+
+
+    if(!products){
+        return (<p>loading ...</p>)
     }
     return (
         <main className='container'>
             <section className='products-list'>
-                {data.products.map((product) =>
-                    <section className='products-list__item' key={product.id}>
+                {products.map((productItem) =>
+                    <section className='products-list__item' key={productItem._id}>
                         <div>
-                            <img src={product.image} alt={product.name} />
+                            <img src={productItem.image} alt={productItem.name} />
                         </div>
                         <div className='products-list__item-name'>
-                            <span>{product.name}</span>
+                            <span>{productItem.name}</span>
                         </div>
                         <div className='products-list__item-details'>
                             <div className='products-list__item-details-price'>
                                 <span>price</span>
-                                <b>$ {product.price} </b>
+                                <b>$ {productItem.price} </b>
                             </div>
-                            <button onClick={() => AddProductHandler(product)}>
-                                {checkInCart(cart,product) ? "In cart" : "Add to cart"}
+                            <button onClick={() => AddProductHandler(productItem)}>
+                                {checkInCart(cart,productItem) ? "In cart" : "Add to cart"}
                             </button>
                         </div>
 
