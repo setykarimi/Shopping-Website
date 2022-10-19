@@ -4,8 +4,9 @@ import * as Yup from 'yup';
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { signupUser } from "../../services/signupService";
-import { useAuthActions } from "../../Providers/AuthProvider";
+import { useAuth, useAuthActions } from "../../Providers/AuthProvider";
 import { useQuery } from "../../hooks/useQuery";
+import { useEffect } from "react";
 
 
 const initialValues = {
@@ -25,13 +26,23 @@ const validationSchema = Yup.object({
 })
 
 
-const SignupForm = (props) => {
-    const navigate = useNavigate();
-    const setAuth = useAuthActions();
+const SignupForm = () => {
+    // Query
     const query = useQuery();
     const redirect = query.get('redirect') || "/";
-    console.log(redirect);
+    // Navigate
+    const navigate = useNavigate();
+    // Authentication
+    const setAuth = useAuthActions();
+    const auth = useAuth()
 
+    useEffect(() => {
+        if(auth) navigate(redirect)
+    },[redirect,auth])
+
+
+   
+    // Submit Function
     const onSubmit = async (values) => {
         const {name, email, phoneNumber, password} = values
         const userData = {
@@ -53,6 +64,8 @@ const SignupForm = (props) => {
         }
     }
 
+
+    // Formik Object
     const formik = useFormik({
         initialValues,
         onSubmit,
@@ -73,7 +86,8 @@ const SignupForm = (props) => {
                 <button type="submit" disabled={!formik.isValid} className="btn-orange">Signup</button>
             </form>
             <Link to={`/login?redirect=${redirect}`} style={{ marginTop: "1em", display: "block" }}>Already have an account? <b className="orange">Login</b></Link>
-        </div>);
+        </div>
+        );
 }
 
 export default SignupForm;
