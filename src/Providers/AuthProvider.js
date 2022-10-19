@@ -1,11 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
+
 const AuthProviderContext = createContext();
 const AuthProviderContextDispatcher = createContext()
 
-const initialState = {
-    cart: [],
-    total: 0
-}
 
 const AuthProvider = ({children}) => {
     const [state,setState] = useState(false);
