@@ -1,10 +1,12 @@
 
 export const cartReducer = (state, action) => {
+    console.log('state',state);
+    console.log('action',action);
     switch (action.type) {
         case 'ADD_TO_CART': {
             const updatedCart = [...state.cart]
             const updatedItemIndex = updatedCart.findIndex(
-                (item) => item.id === action.payload.id)
+                (item) => item._id === action.payload._id)
 
             if (updatedItemIndex < 0) {
                 updatedCart.push({ ...action.payload, quantity: 1 })
@@ -23,10 +25,10 @@ export const cartReducer = (state, action) => {
         case 'REMOVE_PRODUCT': {
             const updatedCart = [...state.cart];
             const updatedItemIndex = updatedCart.findIndex(
-                (item) => item.id === action.payload.id);
+                (item) => item._id === action.payload._id);
             const updatedItem = { ...updatedCart[updatedItemIndex] };
             if (updatedItem.quantity === 1) {
-                const filteredCart = updatedCart.filter(item => item.id !== action.payload.id)
+                const filteredCart = updatedCart.filter(item => item._id !== action.payload._id)
                 return { ...state, cart: filteredCart }
             } else {
                 updatedItem.quantity--;
