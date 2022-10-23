@@ -11,15 +11,15 @@ const Navigation = () => {
         <header className="main-nav">
             <nav>
                 <ul>
-                    <li><NavLink to='/'>Home</NavLink></li>
+                    <li><NavLink end to='/' className={(navData) => navData.isActive ? 'active-link' : "" }>Home</NavLink></li>
                     <li>
-                        <NavLink to='/cart'>Cart
+                        <NavLink to='/cart' className={(navData) => navData.isActive ? 'active-link' : "" }>Cart
                           <span className="cart-length">{cart.length}</span>
                         </NavLink>
                     </li>
                     <li>
                     
-                        <NavLink to={userData ? "/profile" : "/signup"}>
+                        <NavLink to={userData ? "/profile" : "/signup"} className={(navData) => navData.isActive ? 'active-link' : "" }>
                             {userData ? "Profile" : "login/signup"}
                         </NavLink>
                     </li>
