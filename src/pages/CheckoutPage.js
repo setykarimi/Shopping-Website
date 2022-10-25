@@ -1,6 +1,6 @@
 const CheckoutPage = () => {
     return ( <div>
-        <CheckoutPage />
+chekout
     </div> );
 }
  
