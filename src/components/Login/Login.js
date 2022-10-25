@@ -13,25 +13,22 @@ const initialValues = {
     password: "",
 }
 
-
 const validationSchema = Yup.object({
     email: Yup.string().email('Invalid email format').required('Email is required'),
     password: Yup.string().required('Passsword is required'),
 })
-
-
 
 const LoginForm = () => {
     const navigate = useNavigate();
     const setAuth = useAuthActions();
     const auth = useAuth();
 
-    const query = useQuery();
-    const redirect = query.get('redirect') || "/checkout";
-    console.log(redirect);
+    const query = useQuery(); 
+    const redirect = query.get('redirect') || "/";
 
     useEffect(() => {
-        if(auth) navigate(redirect)
+        if(auth) navigate(`/${redirect}`)
+        
     },[redirect,auth])
 
     const onSubmit = async (values) => {
@@ -39,7 +36,7 @@ const LoginForm = () => {
             const {data} = await loginService(values);
             setAuth(data);
             // localStorage.setItem('authState',JSON.stringify(data))
-            navigate(redirect);
+            navigate(`/${redirect}`);
         }catch(error){
           toast.error(error.response.data.message)
         }
@@ -62,7 +59,8 @@ const LoginForm = () => {
                 <button type="submit" disabled={!formik.isValid} className="btn-orange">Login</button>
             </form>
             <Link to={`/signup?redirect=${redirect}`} style={{ marginTop: "1em", display: "block" }}>Dont have an account? <b className="orange">Signup</b></Link>
-        </div>);
+        </div>
+        );
 }
 
 export default LoginForm;
