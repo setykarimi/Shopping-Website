@@ -14,14 +14,12 @@ const HomePage = () => {
     const AddProductHandler = (product) => {
         toast.success(`${product.name} added to Cart!`)
         dispatch({ type: 'ADD_TO_CART', payload: product })
-        console.log(product._id);
     }
 
     useEffect(() => {
         http.get('/product')
         .then((res) =>{
             setProducts(res.data);
-            console.log(res.data);
         })
         .catch((err) => console.log(err))
     },[])
