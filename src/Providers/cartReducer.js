@@ -1,7 +1,5 @@
 
 export const cartReducer = (state, action) => {
-    console.log('state',state);
-    console.log('action',action);
     switch (action.type) {
         case 'ADD_TO_CART': {
             const updatedCart = [...state.cart]
