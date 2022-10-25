@@ -13,7 +13,6 @@ const CartPage = () => {
     const DecrementHandler = (cartItem) => {
         dispatch({ type: "REMOVE_PRODUCT", payload: cartItem })
     }
-    console.log(cart);
     if (cart.length == 0) {
         return <main>Cart is empty</main>
     }
@@ -22,7 +21,7 @@ const CartPage = () => {
         <main className="container cart-page">
             <section>
                 {cart.map(item =>
-                    <div key={item.id} className="cart-item">
+                    <div key={item._id} className="cart-item">
                         <img src={item.image} alt={item.name} className="cart-item__img" />
                         <span className="cart-item__name">{item.name}</span>
                         <span className="cart-item__price">$ {item.offPrice * item.quantity}</span>
@@ -32,12 +31,9 @@ const CartPage = () => {
                             <button onClick={() => IncrementHandler(item)}>+</button>
                         </div>
                     </div>
-
-                )
-                }
+                )}
             </section>
-            <CartSummary total={total}
-                cart={cart} />
+            <CartSummary total={total} cart={cart} />
         </main>
     );
 }
@@ -59,14 +55,14 @@ const CartSummary = ({ total, cart }) => {
                 <h5 className="cart-summary__title">cart discount</h5>
                 <span className="cart-summary__price">${originalTotal - total}</span>
             </div>
-           
+
             <div>
                 <h5 className="cart-summary__title">net price</h5>
                 <span className="cart-summary__price">$ {total}</span>
             </div>
 
-            <Link to='/signup?redirect=checkout ' style={{width: '100%',display: 'block', borderTop: '1px solid #eee', marginTop: "1em"}}>
-                <button className="btn-orange" style={{width: '100%', marginTop: '.5em'}}>Go to Checkout</button>
+            <Link to='/login?redirect=checkout' style={{ width: '100%', display: 'block', borderTop: '1px solid #eee', marginTop: "1em" }}>
+                <button className="btn-orange" style={{ width: '100%', marginTop: '.5em' }}>Go to Checkout</button>
             </Link>
         </section>
     )
