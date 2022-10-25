@@ -37,7 +37,7 @@ const SignupForm = () => {
     const auth = useAuth()
 
     useEffect(() => {
-        if(auth) navigate(redirect)
+        if(auth) navigate(`/${redirect}`)
     },[redirect,auth])
 
 
