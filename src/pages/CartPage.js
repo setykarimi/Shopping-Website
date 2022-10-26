@@ -18,7 +18,7 @@ const CartPage = () => {
     }
 
     return (
-        <main className="container cart-page">
+        <main className="container cart-page m-auto">
             <section>
                 {cart.map(item =>
                     <div key={item._id} className="cart-item">
