@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../Providers/AuthProvider";
 import { useCart } from "../../Providers/CartProvider";
-import './Navigation.scss'
 
 const Navigation = () => {
     const { cart } = useCart();
