@@ -1,10 +1,3 @@
-@font-face {
-  font-family: "Dosis";
-  src: url("./assets/fonts/Dosis-Regular.ttf");
-}
-
-$Dosis: "Dosis";
-
 .App {
   text-align: center;
 }
@@ -14,7 +7,6 @@ $Dosis: "Dosis";
   padding: 0;
   margin: 0;
   list-style: none;
-  font-family: $Dosis;
 }
 
 body {
@@ -26,13 +18,6 @@ body {
   color: #fb923c;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 2em auto;
-  @media (max-width: 1200px) {
-    padding: 1em;
-  }
-}
 
 .btn-orange {
   background: #fb923c;
