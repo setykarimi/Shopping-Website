@@ -29,7 +29,7 @@ const HomePage = () => {
         return (<p>loading ...</p>)
     }
     return (
-        <main className='container'>
+        <main className='container m-auto'>
             <section className='products-list'>
                 {products.map((productItem) =>
                     <section className='products-list__item' key={productItem._id}>
