@@ -7,7 +7,7 @@ const Navigation = () => {
     const userData = useAuth();
 
     return (
-        <header className="bg-blue-100 mb-10">
+        <header className="bg-blue-100 mb-6">
             <nav className="container flex justify-between m-auto py-6 px-6 md:px-2">
                 <ul className="hidden md:flex space-x-4 md:flex-row items-center">
                     <li>
@@ -28,7 +28,6 @@ const Navigation = () => {
                         </NavLink>
                     </li>
                     <li>
-
                         <NavLink to={userData ? "/profile" : "/signup"}
                             className={(navData) => navData.isActive ?
                                 'transition ease-in-ou hover:no-underline font-black text-white hover:bg-blue-300 bg-blue-500 rounded-md px-2 py-1' :
