@@ -6,10 +6,18 @@
    font-family: "Dosis";
    src: url("./assets/fonts/Dosis-Regular.ttf"); }
 
+   @font-face {
+    font-family: "Dosis-Black";
+    src: url("./assets/fonts/Dosis-ExtraBold.ttf"); }
+
 @layer base {
   html {
     font-family: "Dosis";
   }
+}
+
+.font-black{
+font-family: 'Dosis-Black';
 }
 
 a{
