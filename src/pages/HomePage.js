@@ -29,7 +29,7 @@ const HomePage = () => {
         return (<p>loading ...</p>)
     }
     return (
-        <main className='md:container md:mx-auto px-5 md:px-0'>
+        <div>
             <section className='grid grid-cols-1 gap-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-1'>
                 {products.map((productItem) =>
                     <section className='bg-white p-3 shadow-lg rounded-lg' key={productItem._id}>
@@ -54,7 +54,7 @@ const HomePage = () => {
                     </section>
                 )}
             </section>
-        </main>
+        </div>
     );
 }
 

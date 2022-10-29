@@ -13,15 +13,15 @@ const CartPage = () => {
         dispatch({ type: "REMOVE_PRODUCT", payload: cartItem })
     }
     if (cart.length == 0) {
-        return <main>Cart is empty</main>
+        return <div>Cart is empty</div>
     }
 
     return (
-        <main className="container grid-cols-1 lg:grid-cols-4 space-x-0 lg:space-x-4 space-y-4 lg:space-y-0 grid m-auto">
+        <div className="grid-cols-1 lg:grid-cols-4 space-x-0 lg:space-x-4 space-y-4 lg:space-y-0 grid m-auto">
             <section className="col-span-3 grid gap-4">
                 {cart.map(item =>
-                    <div key={item._id} className="grid grid-cols-3 gap-3 items-center bg-white p-4 rounded-md shadow-md">
-                        <img src={item.image} alt={item.name} className="w-40 h-auto rounded-lg" />
+                    <div key={item._id} className="grid grid-cols-3 gap-3 items-center bg-white p-4 rounded-md shadow-md h-max">
+                        <img src={item.image} alt={item.name} className="w-40 xl:w-52 h-auto rounded-lg" />
                         <div className="flex flex-col text-left space-y-2">
                             <span className="font-black text-lg text-blue-500">{item.name}</span>
                             <span className="text-md font-bold">$ {item.offPrice * item.quantity}</span>
@@ -40,7 +40,7 @@ const CartPage = () => {
                 )}
             </section>
             <CartSummary total={total} cart={cart} />
-        </main>
+        </div>
     );
 }
 
@@ -50,7 +50,7 @@ const CartSummary = ({ total, cart }) => {
     const originalTotal = cart.length
         ? cart.reduce((acc, curr) => acc + curr.quantity * curr.price, 0) : 0;
     return (
-        <section className="bg-white p-4 max-h-65 rounded-md shadow-md h-max sticky top-24">
+        <section className="bg-white p-4 rounded-md shadow-md h-max sticky top-24">
             <h3 className="font-black text-2xl mb-4 text-blue-500">Cart summary</h3>
             <div className="mb-4">
                 <h5 className="font-bold text-lg">originalTotal price</h5>
