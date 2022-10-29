@@ -1,5 +1,4 @@
 import { Route, Routes } from 'react-router-dom';
-import './App.scss';
 import Layout from './Layout/Layout';
 import CartProvider from './Providers/CartProvider';
 import { ToastContainer } from 'react-toastify';
