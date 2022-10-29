@@ -8,8 +8,9 @@ const CheckoutPage = () => {
 
     if (!cart.length) {
         return (
-            <div>
-                <Link to='/'>Go to Shopping</Link>
+            <div className='bg-red-100 py-3 rounded-md border-2 border-red-300 text-red-500 text-lg text-center'>
+            <span className='mr-3'>No items here yet!</span>
+                <Link to='/' className='text-red-500 font-black underline'>Go to Shopping</Link>
             </div>
         )
     }
@@ -31,7 +32,7 @@ const CheckoutPage = () => {
                            <div className='px-0 sm:px-8'>
                             {cart && cart.map(c => {
                                 return (
-                                    <div className='flex justify-between mb-3'>
+                                    <div className='flex justify-between mb-3' key={c._id}>
                                         <b className='text-lg'>{c.name} <span className='text-red-300'>*</span> {c.quantity}</b> 
                                         <span className='text-lg'>${c.quantity * c.offPrice}</span>
                                     </div>)
