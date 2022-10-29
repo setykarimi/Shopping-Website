@@ -74,8 +74,8 @@ const SignupForm = () => {
     })
 
     return (
-        <div className="form">
-            <h3>Signup Form</h3>
+        <div className="bg-white w-max m-auto py-4 px-8 rounded-md shadow-md">
+            <h3 className="text-2xl font-black text-blue-500 mb-3">Signup Form</h3>
 
             <form onSubmit={formik.handleSubmit}>
                 <Input formik={formik} label="Name" name="name" />
@@ -83,9 +83,13 @@ const SignupForm = () => {
                 <Input formik={formik} label="Phone Number" name="phoneNumber" type="tel" />
                 <Input formik={formik} label="Password" name="password" type="password" />
                 <Input formik={formik} label="Password Confirmation" name="passwordConfirm" type="password" />
-                <button type="submit" disabled={!formik.isValid} className="btn-orange">Signup</button>
+                <button
+                 type="submit" 
+                 disabled={!formik.isValid}
+                 className="w-full py-2 rounded-md font-black border border-blue-300 text-blue-300 transition-all ease-in-out hover:bg-blue-400 hover:text-white disabled:text-white disabled:bg-gray-400 disabled:border-none">Signup</button>
             </form>
-            <Link to={`/login?redirect=${redirect}`} style={{ marginTop: "1em", display: "block" }}>Already have an account? <b className="orange">Login</b></Link>
+            <Link to={`/login?redirect=${redirect}`} className="mt-4 flex justify-center">
+            Already have an account? <b className="font-black text-md text-blue-400 underline ml-1">Login</b></Link>
         </div>
         );
 }

@@ -23,22 +23,22 @@ const LoginForm = () => {
     const setAuth = useAuthActions();
     const auth = useAuth();
 
-    const query = useQuery(); 
+    const query = useQuery();
     const redirect = query.get('redirect') || "/";
 
     useEffect(() => {
-        if(auth) navigate(`/${redirect}`)
-        
-    },[redirect,auth])
+        if (auth) navigate(`/${redirect}`)
+
+    }, [redirect, auth])
 
     const onSubmit = async (values) => {
-        try{
-            const {data} = await loginService(values);
+        try {
+            const { data } = await loginService(values);
             setAuth(data);
             // localStorage.setItem('authState',JSON.stringify(data))
             navigate(`/${redirect}`);
-        }catch(error){
-          toast.error(error.response.data.message)
+        } catch (error) {
+            toast.error(error.response.data.message)
         }
     }
 
@@ -51,16 +51,24 @@ const LoginForm = () => {
 
 
     return (
-        <div className="form">
-            <h3>Login Form</h3>
+        <div className="bg-white w-max m-auto py-4 px-8 rounded-md shadow-md">
+            <h3 className="text-2xl font-black text-blue-500 mb-3">Login Form</h3>
             <form onSubmit={formik.handleSubmit}>
                 <Input formik={formik} label="Email" name="email" type="email" />
                 <Input formik={formik} label="Password" name="password" type="password" />
-                <button type="submit" disabled={!formik.isValid} className="btn-orange">Login</button>
+                <button
+                    type="submit"
+                    disabled={!formik.isValid}
+                    className="w-full py-2 rounded-md font-black border border-blue-300 text-blue-300 transition-all ease-in-out hover:bg-blue-400 hover:text-white disabled:text-white disabled:bg-gray-400 disabled:border-none">Login</button>
             </form>
-            <Link to={`/signup?redirect=${redirect}`} style={{ marginTop: "1em", display: "block" }}>Dont have an account? <b className="orange">Signup</b></Link>
+            <Link
+                to={`/signup?redirect=${redirect}`}
+                className="mt-4 flex justify-center" >
+                Don't have an account?
+                <b className="font-black text-md text-blue-400 underline ml-1">Signup</b>
+            </Link>
         </div>
-        );
+    );
 }
 
 export default LoginForm;
