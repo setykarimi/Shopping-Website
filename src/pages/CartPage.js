@@ -13,7 +13,10 @@ const CartPage = () => {
         dispatch({ type: "REMOVE_PRODUCT", payload: cartItem })
     }
     if (cart.length == 0) {
-        return <div>Cart is empty</div>
+        return <div className='bg-red-100 py-3 rounded-md border-2 border-red-300 text-red-500 text-lg text-center'>
+            <span className="mr-3">Cart is empty!</span>
+            <Link to='/' className='text-red-500 font-black underline'>Go to Shopping</Link>
+        </div>
     }
 
     return (
@@ -50,7 +53,7 @@ const CartSummary = ({ total, cart }) => {
     const originalTotal = cart.length
         ? cart.reduce((acc, curr) => acc + curr.quantity * curr.price, 0) : 0;
     return (
-        <section className="bg-white p-4 rounded-md shadow-md h-max sticky top-24">
+        <section className="bg-white p-4 rounded-md shadow-md h-max sticky top-24 text-center">
             <h3 className="font-black text-2xl mb-4 text-blue-500">Cart summary</h3>
             <div className="mb-4">
                 <h5 className="font-bold text-lg">originalTotal price</h5>
