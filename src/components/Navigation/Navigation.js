@@ -7,7 +7,7 @@ const Navigation = () => {
     const userData = useAuth();
 
     return (
-        <header className="bg-blue-100 mb-6">
+        <header className="bg-blue-100 mb-6 sticky top-0">
             <nav className="container flex justify-between m-auto py-6 px-6 md:px-2">
                 <ul className="hidden md:flex space-x-4 md:flex-row items-center">
                     <li>
