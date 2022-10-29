@@ -11,20 +11,13 @@
     src: url("./assets/fonts/Dosis-ExtraBold.ttf"); }
 
 @layer base {
-  html {
+  html,body {
     font-family: "Dosis";
+    background: #f9f9f9;
+    color: #444;
   }
 }
 
 .font-black{
 font-family: 'Dosis-Black';
-}
-
-a{
-  text-decoration: none;
-  color: #444;
-}
-
-a:hover{
-  text-decoration: underline;
 }
